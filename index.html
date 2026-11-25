@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142f26">
+  <meta name="description" content="بيان مبالغ حملة دعم الطالب اليمني في الصين ومعاينة إعلان اكتمال التبرعات.">
+  <title>ختام حملة دعم الطالب اليمني في الصين</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="campaign.js" defer></script>
+  <script src="poster.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="container masthead-inner">
+      <span class="flag" aria-hidden="true"></span>
+      <h1>ختام حملة دعم الطالب اليمني في الصين</h1>
+    </div>
+  </header>
+  <main class="container workspace">
+    <section class="editor" aria-labelledby="amounts-heading">
+      <h2 id="amounts-heading">بيان التبرعات</h2>
+      <p class="intro">أدخل الإجمالي النهائي لكل قناة باليوان الصيني. تتحدّث الأرقام في الملصق فورًا.</p>
+      <form id="amounts" novalidate>
+        <div class="fields">
+          <label>اتحاد الطلاب<input inputmode="decimal" name="union" maxlength="18" dir="ltr"></label>
+          <label>ويشات<input inputmode="decimal" name="wechat" maxlength="18" dir="ltr"></label>
+          <label>أليباي (الجيفوباو)<input inputmode="decimal" name="alipay" maxlength="18" dir="ltr"></label>
+          <label>التحويل البنكي<input inputmode="decimal" name="bank" maxlength="18" dir="ltr" placeholder="—"></label>
+          <label>التعهدات غير المحصّلة<input inputmode="decimal" name="pledges" maxlength="18" dir="ltr"></label>
+          <label>هدف الحملة<input inputmode="decimal" name="goal" maxlength="18" dir="ltr"></label>
+        </div>
+        <p id="validation" role="alert" class="error" hidden>أدخل مبالغ غير سالبة بمنزلتين عشريتين كحد أقصى، وهدفًا أكبر من صفر.</p>
+        <section class="summary" aria-label="إجماليات التبرعات">
+          <div><span>المستلم فعليًا</span><strong><bdi id="received">—</bdi> <small>يوان</small></strong></div>
+          <div><span>التعهدات غير المحصّلة</span><strong><bdi id="pledged">—</bdi> <small>يوان</small></strong></div>
+          <div><span>الإجمالي مع التعهدات</span><strong><bdi id="combined">—</bdi> <small>يوان</small></strong></div>
+          <div><span id="balance-label">المتبقّي للهدف</span><strong><bdi id="balance">—</bdi> <small>يوان</small></strong></div>
+          <progress id="progress" aria-label="تقدّم المبلغ المستلم نحو الهدف" max="100" value="0"></progress>
+        </section>
+        <p class="status" id="completion-status" role="status"></p>
+        <div class="actions">
+          <button id="download" type="button" disabled>تنزيل إعلان الاكتمال PNG</button>
+          <button id="reset" type="button" class="secondary">استعادة الأرقام المنشورة</button>
+        </div>
+        <p class="feedback" id="feedback" role="status"></p>
+      </form>
+      <details>
+        <summary>نشر الأرقام لجميع الزوار</summary>
+        <p>تُحفَظ التعديلات في متصفحك. لنشرها للجميع، نزّل ملف الأرقام وارفعه باسم <bdi>campaign.js</bdi> إلى جذر مستودع هذا المشروع.</p>
+        <button id="settings" type="button" class="secondary">تنزيل ملف الأرقام</button>
+      </details>
+    </section>
+    <section class="preview" aria-labelledby="preview-heading">
+      <h2 id="preview-heading">معاينة الإعلان</h2>
+      <canvas id="poster" width="2160" height="3400" role="img" aria-label="معاينة بيان مبالغ الحملة وإعلان الاكتمال"></canvas>
+    </section>
+  </main>
+</body>
+</html>

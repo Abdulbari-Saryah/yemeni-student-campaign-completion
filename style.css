@@ -1,0 +1,41 @@
+@font-face{font-family:"Noto Campaign";src:url("fonts/NotoSansArabic.ttf") format("truetype");font-weight:100 900;font-display:swap}
+*{box-sizing:border-box}
+:root{color-scheme:light;font-family:"Noto Campaign",Tahoma,Arial,sans-serif;color:#17362b;background:#f3efe4;line-height:1.6}
+body{margin:0}
+.container{width:min(1320px,calc(100% - 48px));margin-inline:auto}
+.masthead{background:#142f26;color:#fff2d7;border-bottom:3px solid #bc8b49}
+.masthead-inner{display:flex;align-items:center;gap:15px;min-height:90px;padding-block:14px}
+.flag{flex:none;width:34px;height:23px;border-radius:3px;border:1px solid #ffffff99;background:linear-gradient(#d1243b 33.33%,#fff 33.33% 66.66%,#151515 66.66%)}
+h1{margin:0;font-size:clamp(1.25rem,3vw,1.9rem);line-height:1.5}
+h2{margin:0 0 12px;font-size:1.3rem}
+.workspace{display:grid;grid-template-columns:minmax(340px,1fr) minmax(0,1.17fr);gap:28px;align-items:start;padding-block:27px}
+.editor{padding:25px;background:#fffdf6;border:1px solid #e1dbcc;border-radius:16px;box-shadow:0 10px 35px #183c2711}
+.intro,details p{margin:0 0 17px;color:#4c6156}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+label{display:grid;gap:5px;font-size:.9rem;font-weight:700}
+input{font:1.04rem 'Segoe UI',Arial,sans-serif;width:100%;padding:10px 11px;border-radius:8px;border:1px solid #d0d7cb;background:#fff;color:#17362b}
+input[aria-invalid=true]{border-color:#a43f3f}
+:focus-visible{outline:3px solid #ac773b;outline-offset:3px}
+.summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;background:#edf2e9;padding:16px;margin-top:19px;border-radius:10px}
+.summary span{display:block;font-size:.85rem;color:#4c6255}
+.summary strong{display:block;font-size:1.3rem;overflow-wrap:anywhere}
+.summary small{font-size:.8rem}
+progress{grid-column:1/-1;display:block;width:100%;height:11px;border:0;border-radius:8px;overflow:hidden;background:#d3e0d4;appearance:none}
+progress::-webkit-progress-bar{background:#d3e0d4}
+progress::-webkit-progress-value{background:#267756}
+progress::-moz-progress-bar{background:#267756}
+.status,.feedback,.error{font-size:.9rem;color:#486054;line-height:1.6}
+.feedback:empty{display:none}
+.error{color:#9e3338}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+button{min-height:43px;padding:8px 13px;border:1px solid transparent;border-radius:8px;font:700 .88rem "Noto Campaign",Tahoma,sans-serif;background:#1f6249;color:white;cursor:pointer}
+button:hover:enabled{background:#164a37}
+button.secondary{background:#f6f4eb;border-color:#dedbce;color:#214636}
+button.secondary:hover:enabled{background:#efede1}
+button:disabled{opacity:.52;cursor:default}
+details{border-top:1px solid #e4dfd0;margin-top:18px;padding-top:12px}
+details p,summary{font-size:.9rem}
+summary{cursor:pointer;font-weight:700}
+details p{margin-block:10px}
+canvas{display:block;width:100%;height:auto;background:#142f26;border:1px solid #d3d6c8;border-radius:13px;box-shadow:0 11px 28px #192f2520}
+@media(max-width:760px){.container{width:calc(100% - 26px)}.workspace{grid-template-columns:minmax(0,1fr);gap:19px;padding-block:16px}.editor{padding:17px}}
