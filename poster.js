@@ -86,52 +86,70 @@ function createCompletionPoster(canvas, formatYuan) {
   function drawStatement(state) {
     const { amounts, received, combined, balance, complete } = state;
     const ink = "#183b2d";
-    const muted = "#52685b";
-    box(64, 650, 952, 581, 23, "#fff9ed", "#d6b982");
-    write("بيان التبرعات", 978, 706, { size: 43, weight: 850, color: ink });
-    write("باليوان الصيني", 102, 704, { size: 25, align: "left", color: muted });
-    write("المستلم فعليًا", 978, 755, { size: 24, color: muted });
-    write(formatYuan(received), 978, 813, { size: 60, weight: 900, color: ink, numeric: true, max: 480 });
-    write("هدف الحملة", 102, 755, { size: 24, align: "left", color: muted });
-    write(formatYuan(amounts.goal), 102, 805, { size: 40, weight: 760, align: "left", color: ink, numeric: true, max: 330 });
-    box(102, 834, 876, 16, 8, "#dfe7da");
-    const bar = 876 * Math.min(1, received / amounts.goal);
-    if (bar > 0) box(978 - bar, 834, bar, 16, Math.min(8, bar / 2), "#247654");
+    const muted = "#4a6355";
+    box(64, 650, 952, 717, 23, "#fff9ed", "#d6b982");
+    write("بيان التبرعات", 984, 702, { size: 42, weight: 850, color: ink });
+    write("باليوان الصيني", 96, 699, { size: 24, align: "left", color: muted });
 
-    const entries = [
+    box(96, 725, 888, 188, 17, "#214b3a");
+    const gold = "#f2d6a4";
+    write("المستلم فعليًا", 953, 771, { size: 27, weight: 720, color: gold });
+    write(formatYuan(received), 953, 842, { size: 65, weight: 900, numeric: true, max: 482 });
+    box(439, 756, 1, 84, 0, "#658471");
+    write("هدف الحملة", 411, 771, { size: 25, color: gold });
+    write(formatYuan(amounts.goal), 411, 827, { size: 39, weight: 790, numeric: true, max: 284 });
+    box(128, 874, 824, 13, 6.5, "#416451");
+    const bar = 824 * Math.min(1, received / amounts.goal);
+    if (bar > 0) box(952 - bar, 874, bar, 13, Math.min(6.5, bar / 2), "#e7be78");
+
+    write("تفاصيل المبالغ المستلمة", 984, 964, { size: 29, weight: 800, color: ink });
+    const channels = [
       ["اتحاد الطلاب", amounts.union],
       ["ويشات", amounts.wechat],
       ["أليباي (الجيفوباو)", amounts.alipay],
-      ["التحويل البنكي", amounts.bank],
-      ["التعهدات غير المحصّلة", amounts.pledges],
-      ["الإجمالي مع التعهدات", combined],
-      [complete ? "الفائض عن الهدف" : "المتبقّي للهدف", balance]
+      ["التحويل البنكي", amounts.bank]
     ];
-    entries.forEach(([name, value], i) => {
-      const y = 895 + i * 48;
-      if (i > 0) line(102, 978, y - 33, "#e1dbca");
-      write(name, 975, y, { size: 27, weight: i >= 5 ? 750 : 610, color: ink });
-      write(value === null ? "—" : formatYuan(value), 105, y, {
-        size: 28, weight: i >= 5 ? 800 : 680, color: ink, align: "left", numeric: true
+    channels.forEach(([name, value], index) => {
+      const x = index % 2 === 0 ? 548 : 96;
+      const y = 983 + Math.floor(index / 2) * 109;
+      const right = x + 414;
+      box(x, y, 436, 96, 12, "#f5f5eb", "#dfe5d8");
+      write(name, right, y + 34, { size: 25, weight: 650, color: muted });
+      write(value === null ? "—" : formatYuan(value), right, y + 77, {
+        size: 37, weight: 820, color: ink, numeric: true, max: 393
+      });
+    });
+
+    const reconciliation = [
+      ["التعهدات غير المحصّلة", amounts.pledges, "#f5e8ce", "#e6d3ad"],
+      ["الإجمالي مع التعهدات", combined, "#f5e8ce", "#e6d3ad"],
+      [complete ? "الفائض عن الهدف" : "المتبقّي للهدف", balance, "#e7efe3", "#d6e2d4"]
+    ];
+    reconciliation.forEach(([name, value, fill, border], index) => {
+      const x = 696 - index * 300;
+      box(x, 1215, 288, 119, 13, fill, border);
+      write(name, x + 267, 1256, { size: 23, weight: 700, color: muted, max: 248 });
+      write(formatYuan(value), x + 267, 1308, {
+        size: 35, weight: 840, color: ink, numeric: true, max: 248
       });
     });
   }
 
   function drawThanks() {
     const copy = [
-      ["شكرًا لكل من تبرّع، ولكل من شارك النداء ودلّ عليه،", 1291],
-      ["ولكل من ساند الطالب وأهله بدعوة صادقة.", 1338]
+      ["شكرًا لكل من تبرّع، ولكل من شارك النداء ودلّ عليه،", 1427],
+      ["ولكل من ساند الطالب وأهله بدعوة صادقة.", 1474]
     ];
     copy.forEach(([value, y]) => write(value, W / 2, y, { align: "center", size: 34, weight: 710 }));
-    line(420, 519, 1382, "#b99663");
-    line(561, 660, 1382, "#b99663");
-    box(536, 1378, 8, 8, 3, "#e3bc7b");
+    line(420, 519, 1518, "#b99663");
+    line(561, 660, 1518, "#b99663");
+    box(536, 1514, 8, 8, 3, "#e3bc7b");
     const prayer = [
       "اللهم تقبّل منهم، وبارك لهم في أرزاقهم وأهليهم،",
       "واخلف عليهم خيرًا، واجعل ما بذلوه في ميزان حسناتهم.",
       "اللهم فرّج كرب الطالب وأهله، وأجزِ كل من أعانهم خير الجزاء."
     ];
-    prayer.forEach((value, i) => write(value, W / 2, 1450 + i * 54, {
+    prayer.forEach((value, i) => write(value, W / 2, 1586 + i * 54, {
       align: "center", size: 32, weight: 610, color: "#f3dbaa"
     }));
   }
